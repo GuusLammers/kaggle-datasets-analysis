@@ -31,7 +31,7 @@ x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, Y
 # instantiate best variable
 best = 0
 # iterator to specify number of training runs
-for _ in range(50):  # 50 training runs
+for _ in range(100):  # 100 training runs
     x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, Y, test_size=0.1)    # test size is 10% of data
     # instantiate regression object
     linear = linear_model.LinearRegression()
@@ -45,6 +45,8 @@ for _ in range(50):  # 50 training runs
         # save model in pickle file
         with open('diamond_price_model.pickle', 'wb') as pickle_file:
             pickle.dump(linear, pickle_file)
+
+print(best)
 '''
 
 # read in model
@@ -61,7 +63,7 @@ for x in range(10):
     print(round(predictions[x], 2), y_test[x])
 
 # plots the price of the diamond against one other variable on a scatter plot
-p = 'x'
+p = 'table'
 style.use('ggplot')
 pyplot.scatter(diamond_data[p], diamond_data[predict])
 pyplot.xlabel(p)
